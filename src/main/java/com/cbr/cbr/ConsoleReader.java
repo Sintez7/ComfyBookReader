@@ -30,9 +30,9 @@ public class ConsoleReader {
                 e.printStackTrace();
             }
         }
-//
-//        for (String sampleString : sampleStrings) {
-//            System.out.println(sampleString);
-//        }
+
+        for (String sampleString : sampleStrings) {
+            System.out.println(sampleString);
+        }
     }
 }
