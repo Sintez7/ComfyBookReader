@@ -15,7 +15,7 @@ import java.util.List;
 @Component
 public class ConsoleReader {
 
-    @PostConstruct
+//    @PostConstruct
     private void init() {
         File sample = new File("src/main/resources/static/sample.fb2");
         System.out.println("Sample can read?: " + sample.canRead());
