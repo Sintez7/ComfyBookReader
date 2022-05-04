@@ -19,24 +19,40 @@ import java.util.List;
 @RequestMapping("/")
 public class WebReaderTryOne {
 
+    List<String> sampleStrings = new ArrayList<>();
+    boolean isSampleRead = false;
+
     @GetMapping
     public String method1(Model model) {
+
+        isSampleRead = false;
+
         File sample = new File("src/main/resources/static/sample.fb2");
         System.out.println("Sample can read?: " + sample.canRead());
         System.out.println("path: " + sample.getAbsolutePath());
 
-        List<String> sampleStrings = new ArrayList<>();
+        readFile(sample);
+        processText();
 
+        model.addAttribute("sampleLines", sampleStrings);
+
+        return "testing2";
+    }
+
+    private void readFile(File sample) {
         if (sample.canRead()) {
             try {
                 sampleStrings = Files.readAllLines(Path.of(sample.getPath()), StandardCharsets.UTF_8);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            System.err.println("Sample read successfully.");
+            isSampleRead = true;
         }
+        System.err.println("Sample can't be read.");
+    }
 
-        model.addAttribute("sampleLines", sampleStrings);
+    public void processText() {
 
-        return "testing2";
     }
 }
